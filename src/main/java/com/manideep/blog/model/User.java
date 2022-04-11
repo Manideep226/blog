@@ -3,10 +3,13 @@ package com.manideep.blog.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="users")
+@Data
 public class User {
 
     @Id
@@ -15,21 +18,18 @@ public class User {
     private int id;
 
     @Column(name="name")
-    @NotNull(message = "Name cannot be empty")
+    @NotBlank(message = "Name cannot be null")
     private String name;
 
-    @Column(name="mobile",nullable = false)
-//    @NotNull(message = "Mobile cannot be empty")
-    @Pattern(regexp = "^\\d{10}$")
+    @Column(name="mobile")
+    @Pattern(regexp="^\\d{10}$", message = "Enter valid mobile Number")
     private String mobile;
 
-
     @Column(name="email")
-    @NotNull(message = "Email cannot be empty")
-    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email cannot be null")
     private String email;
 
     @Column(name="gender")
-    @NotNull(message = "Gender cannot be empty")
+    @NotBlank(message = "Gender cannot be null")
     private String gender;
 }
