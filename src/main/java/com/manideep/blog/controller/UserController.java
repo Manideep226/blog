@@ -30,7 +30,6 @@ public class UserController {
     public ResponseEntity<List<User>> getUsers(@RequestParam(value="name",required = false) String name, @RequestParam(value="mobile",required = false) String mobile, @RequestParam(value="gender",required=false) String gender, @RequestParam(value="email",required = false) String email){
         List<User> userdetails =  userService.getUsers(name,mobile,email,gender);
         return new ResponseEntity<>(userdetails,HttpStatus.OK);
-
     }
 
     @GetMapping("/get/{id}")

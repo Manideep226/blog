@@ -13,10 +13,16 @@ import java.util.HashMap;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<?> handleUserNotFoundException(UserNotFoundException exception, WebRequest webRequest){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleUserNotFoundException(ResourceNotFoundException exception, WebRequest webRequest){
         ErrorResponse e = new ErrorResponse(exception.getMessage(), webRequest.getDescription(false));
         return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<?> handleUserAlreadyExistsException(ResourceAlreadyExistsException exception, WebRequest webRequest){
+        ErrorResponse e = new ErrorResponse(exception.getMessage(), webRequest.getDescription(false));
+        return new ResponseEntity<>(e, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

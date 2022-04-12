@@ -1,6 +1,6 @@
 package com.manideep.blog.serviceimpl;
 
-import com.manideep.blog.Exceptions.UserNotFoundException;
+import com.manideep.blog.Exceptions.ResourceNotFoundException;
 import com.manideep.blog.model.User;
 import com.manideep.blog.repository.UserRepository;
 import com.manideep.blog.service.UserService;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         }
         List<User> userDetails = userRepository.findUserByMultiParam(name,mobile,email,gender);
         if(Objects.isNull(userDetails) || userDetails.size() == 0){
-            throw new UserNotFoundException("users not found");
+            throw new ResourceNotFoundException("users not found");
         }
         return userDetails;
     }
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if(userDetails.isPresent()){
             return userDetails.get();
         } else {
-            throw new UserNotFoundException("user not found");
+            throw new ResourceNotFoundException("user not found");
         }
     }
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
             User u = userRepository.save(userDetails.get());
             return u;
         } else {
-            throw new UserNotFoundException("user not found");
+            throw new ResourceNotFoundException("user not found");
         }
     }
 
