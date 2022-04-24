@@ -59,8 +59,15 @@ public class ExpertsServiceImpl implements ExpertsService {
     }
 
     @Override
-    public List<Experts> getExperts() {
-        List<Experts> experts= expertsRepository.findAll();
+    public List<Experts> getExperts(Integer techId) {
+        List<Experts> experts = new ArrayList<>();
+        if(techId == null) {
+            experts = expertsRepository.findAll();
+            return experts;
+        }
+        else {
+            experts = expertsRepository.findAllByTechId(techId);
+        }
         if(experts.size()==0)
             throw new ResourceNotFoundException("Experts not found");
         return experts;

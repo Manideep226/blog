@@ -1,5 +1,4 @@
 package com.manideep.blog.controller;
-
 import com.manideep.blog.dto.ExpertsDto;
 import com.manideep.blog.model.Experts;
 import com.manideep.blog.model.User;
@@ -32,10 +31,9 @@ public class ExpertsController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Experts>> getExperts() {
-        List<Experts> expertsDetails =  expertsService.getExperts();
+    public ResponseEntity<List<Experts>> getExperts(@RequestParam(name="techid",required=false) Integer techid) {
+        List<Experts> expertsDetails =  expertsService.getExperts(techid);
         return new ResponseEntity<>(expertsDetails,HttpStatus.OK);
-
     }
 
     @GetMapping("/get/{id}")

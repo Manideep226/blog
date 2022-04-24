@@ -10,10 +10,7 @@ import java.util.List;
 @Service
 public interface ExpertsService {
     HashMap<String,String> createExpert(ExpertsDto experts);
-
     HashMap<String,String> deleteExpert(Integer id);
-
-
-    List<Experts> getExperts();
+    List<Experts> getExperts(Integer techId);
     Experts getExpertsById(Integer id);
 }
